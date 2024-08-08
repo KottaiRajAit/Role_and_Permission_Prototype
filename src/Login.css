@@ -1,0 +1,99 @@
+/* Login.css */
+body {
+    background-color: lightblue;
+}
+
+.login-container {
+    border: 2px solid #000;
+    padding: 20px;
+    width: 300px;
+    margin: 100px auto;
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.login-container input {
+    width: 95%;
+    padding: 10px;
+    margin: 10px 0;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+.login-container button {
+    width: 100%;
+    padding: 10px;
+    font-size: 16px;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.login-container button:hover {
+    background-color: #0056b3;
+}
+
+.campaign-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    border: 2px solid #000;
+    padding: 20px;
+    width: 500px;
+    height: 300px; /* Set a fixed height */
+    margin: 100px auto;
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.setting-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    border: 2px solid #000;
+    padding: 20px;
+    width: 500px;
+    height: 300px; /* Set a fixed height */
+    margin: 100px auto;
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.layout-container {
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+}
+
+.content-container {
+    flex: 1;
+    padding: 20px;
+}
+
+.menu-bar {
+    display: flex;
+    justify-content: space-around;
+    background-color: #000000;
+    padding: 10px;
+    border: 1px solid #ccc; /* Add border */
+    border-radius: 5px; /* Optional: Add rounded corners */
+}
+
+.menu-bar a {
+    text-decoration: none;
+    color: #ffffff;
+    padding: 10px;
+}
+
+.menu-bar a:hover {
+    background-color: #465360;
+    border-radius: 3px;
+}

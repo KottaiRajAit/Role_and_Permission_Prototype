@@ -1,0 +1,35 @@
+{
+    "roles": [
+        {
+            "slug": "admin",
+            "permissions": [
+                "create_user",
+                "delete_user",
+                "update_user",
+                "view_user",
+                "home_access",
+                "campaign_access",
+                "settings_access"
+            ]
+        },
+        {
+            "slug": "manager",
+            "permissions": [
+                "create_user",
+                "update_user",
+                "view_user",
+                "home_access",
+                "campaign_access"
+            ]
+        },
+        {
+            "slug": "employee",
+            "permissions": [
+                "view_user",
+                "home_access",
+                   "campaign_access",
+                "settings_access"
+            ]
+        }
+    ]
+}
