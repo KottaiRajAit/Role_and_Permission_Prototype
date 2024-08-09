@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
+import { BrowserRouter, Routes, Route, Navigate, useLocation } from "react-router-dom";
 import Layout from "./Layout.jsx";
 import Home from "./Home";
 import Campaign from "./Campaign";
@@ -11,16 +11,21 @@ class Router extends Component {
     state = {  
         isHome: false,
         isCampaign: false,
-        isSettings: false
+        isSettings: false,
+        loading: true // Add loading state
     }
 
     componentDidMount() {
         const permissions = middleware.isHasPermission(this.props.permissions);
-        this.setState(permissions);
+        this.setState({ ...permissions, loading: false }); // Update loading state
     }
 
     render() {
-        const { isHome, isCampaign, isSettings } = this.state;
+        const { isHome, isCampaign, isSettings, loading } = this.state;
+
+        if (loading) {
+            return <div>Loading...</div>; // You can replace this with a spinner or any loading indicator
+        }
 
         const routes = [
           { path: '/', component: Home, hasComponent: isHome },
