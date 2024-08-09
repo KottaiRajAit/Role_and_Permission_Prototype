@@ -2,16 +2,16 @@ import React, { Component } from 'react';
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import Layout from "./Layout.jsx";
 import Home from "./Home";
-import About from "./About";
-import Contact from "./Contact";
+import Campaign from "./Campaign";
+import Settings from "./Settings";
 import middleware from "./middleware";
 
 class Router extends Component {
 
     state = {  
         isHome: false,
-        isAbout: false,
-        isContact: false
+        isCampaign: false,
+        isSettings: false
     }
 
     componentDidMount() {
@@ -20,18 +20,18 @@ class Router extends Component {
     }
 
     render() {
-        const { isHome, isAbout, isContact } = this.state;
+        const { isHome, isCampaign, isSettings } = this.state;
 
         const routes = [
           { path: '/', component: Home, hasComponent: isHome },
-          { path: '/about', component: About, hasComponent: isAbout },
-          { path: '/contact', component: Contact, hasComponent: isContact },
+          { path: '/campaign', component: Campaign , hasComponent: isCampaign  },
+          { path: '/settings', component: Settings, hasComponent: isSettings  },
           { path: '*', hasComponent: false } // Catch-all for undefined routes
         ];
 
         return (
             <BrowserRouter>
-                <Layout isHome={isHome} isAbout={isAbout} isContact={isContact}>
+                <Layout isHome={isHome} isCampaign={isCampaign} isSettings={isSettings}>
                     <Routes>
                         {routes.map((route, index) => 
                             route.hasComponent ? (
