@@ -12,27 +12,30 @@ class Router extends Component {
         isHome: false,
         isCampaign: false,
         isSettings: false,
-        loading: true // Add loading state
+        loading: true
     }
 
     componentDidMount() {
         const permissions = middleware.isHasPermission(this.props.permissions);
-        this.setState({ ...permissions, loading: false }); // Update loading state
+        this.setState({ ...permissions, loading: false });
     }
 
     render() {
         const { isHome, isCampaign, isSettings, loading } = this.state;
-
+        
         if (loading) {
-            return <div>Loading...</div>; // You can replace this with a spinner or any loading indicator
+            return <div>Loading...</div>;
         }
 
         const routes = [
           { path: '/', component: Home, hasComponent: isHome },
-          { path: '/campaign', component: Campaign , hasComponent: isCampaign  },
-          { path: '/settings', component: Settings, hasComponent: isSettings  },
-          { path: '*', hasComponent: false } // Catch-all for undefined routes
+          { path: '/campaign', component: Campaign , hasComponent: isCampaign },
+          { path: '/settings', component: Settings, hasComponent: isSettings },
         ];
+
+        const currentPath = window.location.pathname;
+
+        const validRoute = routes.find(route => route.path === currentPath && route.hasComponent);
 
         return (
             <BrowserRouter>
@@ -45,14 +48,10 @@ class Router extends Component {
                                     path={route.path} 
                                     element={<route.component />} 
                                 />
-                            ) : (
-                                <Route 
-                                    key={index} 
-                                    path={route.path} 
-                                    element={<Navigate to="/" replace />} 
-                                />
-                            )
+                            ) : null
                         )}
+
+                        {!validRoute && <Route path="*" element={<Navigate to="/" replace />} />}
                     </Routes>
                 </Layout>
             </BrowserRouter>
