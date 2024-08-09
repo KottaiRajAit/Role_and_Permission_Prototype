@@ -2,36 +2,52 @@ import React, { Component } from 'react';
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import Layout from "./Layout.jsx";
 import Home from "./Home";
-import Campaign from "./Campaign";
-import Settings from "./Settings";
+import About from "./About";
+import Contact from "./Contact";
 import middleware from "./middleware";
 
 class Router extends Component {
 
-    constructor(props) {
-        super(props);
-    }
-
     state = {  
-        isHome : false,
-        isCampaign : false,
-        isSettings : false
+        isHome: false,
+        isAbout: false,
+        isContact: false
     }
 
     componentDidMount() {
-       let isHasPermission = middleware.isHasPermission(this.props.permissions)
-       this.setState(isHasPermission)
+        const permissions = middleware.isHasPermission(this.props.permissions);
+        this.setState(permissions);
     }
 
     render() {
+        const { isHome, isAbout, isContact } = this.state;
+
+        const routes = [
+          { path: '/', component: Home, hasComponent: isHome },
+          { path: '/about', component: About, hasComponent: isAbout },
+          { path: '/contact', component: Contact, hasComponent: isContact },
+          { path: '*', hasComponent: false } // Catch-all for undefined routes
+        ];
+
         return (
             <BrowserRouter>
-                <Layout isCampaign={this.state.isCampaign} isHome={this.state.isHome} isSettings={this.state.isSettings}>
+                <Layout isHome={isHome} isAbout={isAbout} isContact={isContact}>
                     <Routes>
-                        {this.state.isHome && <Route path="/" element={<Navigate to="/Home" />} />}
-                        {this.state.isHome && <Route path="/Home" element={<Home />} />}
-                        {this.state.isCampaign && <Route path="/campaign" element={<Campaign />} />}
-                        {this.state.isSettings && <Route path="/settings" element={<Settings />} />}
+                        {routes.map((route, index) => 
+                            route.hasComponent ? (
+                                <Route 
+                                    key={index} 
+                                    path={route.path} 
+                                    element={<route.component />} 
+                                />
+                            ) : (
+                                <Route 
+                                    key={index} 
+                                    path={route.path} 
+                                    element={<Navigate to="/" replace />} 
+                                />
+                            )
+                        )}
                     </Routes>
                 </Layout>
             </BrowserRouter>
