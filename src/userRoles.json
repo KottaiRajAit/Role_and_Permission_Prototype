@@ -27,7 +27,6 @@
             "permissions": [
                 "view_user",
                 "home_access",
-                   "campaign_access",
                 "settings_access"
             ]
         }
